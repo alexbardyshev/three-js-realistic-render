@@ -135,6 +135,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.physicallyCorrectLights = true
 renderer.outputEncoding = THREE.sRGBEncoding
 renderer.toneMapping = THREE.ACESFilmicToneMapping
+renderer.toneMappingExposure = 1.5
 
 gui.add(renderer, 'toneMapping', {
     No: THREE.NoToneMapping,
@@ -143,6 +144,7 @@ gui.add(renderer, 'toneMapping', {
     Cineon: THREE.CineonToneMapping,
     ACES: THREE.ACESFilmicToneMapping
 })
+gui.add(renderer, 'toneMappingExposure').min(0).max(10).step(0.001)
 
 /**
  * Animate
