@@ -44,18 +44,18 @@ const updateAllMaterials = () => {
  * Environment map
  */
 const environmentMap = cubeTextureLoader.load([
-    '/textures/environmentMaps/0/px.jpg',
-    '/textures/environmentMaps/0/nx.jpg',
-    '/textures/environmentMaps/0/py.jpg',
-    '/textures/environmentMaps/0/ny.jpg',
-    '/textures/environmentMaps/0/pz.jpg',
-    '/textures/environmentMaps/0/nz.jpg',
+    '/textures/environmentMaps/3/px.jpg',
+    '/textures/environmentMaps/3/nx.jpg',
+    '/textures/environmentMaps/3/py.jpg',
+    '/textures/environmentMaps/3/ny.jpg',
+    '/textures/environmentMaps/3/pz.jpg',
+    '/textures/environmentMaps/3/nz.jpg',
 ])
 environmentMap.encoding = THREE.sRGBEncoding
 scene.background = environmentMap
 scene.environment = environmentMap
 
-debugObject.envMapIntensity = 2
+debugObject.envMapIntensity = 1
 gui.add(debugObject, 'envMapIntensity').min(0).max(5).step(0.001).onChange(updateAllMaterials)
 
 
@@ -63,10 +63,10 @@ gui.add(debugObject, 'envMapIntensity').min(0).max(5).step(0.001).onChange(updat
  * Models
  */
 gltfLoader.load(
-    '/models/FlightHelmet/glTF/FlightHelmet.gltf',
+    '/models/Hamburger.glb',
     (gltf) => {
-        gltf.scene.scale.set(10, 10, 10)
-        gltf.scene.position.set(0, -4, 0)
+        gltf.scene.scale.set(0.3, 0.3, 0.3)
+        gltf.scene.position.set(0, -1, 0)
         gltf.scene.rotation.y = Math.PI * 0.5
         scene.add(gltf.scene)
 
@@ -84,10 +84,11 @@ gltfLoader.load(
  * Lights
  */
 const directionalLight = new THREE.DirectionalLight('#ffffff', 3)
-directionalLight.position.set(0.25, 3, -2.25)
+directionalLight.position.set(0, 3, 4)
 directionalLight.castShadow = true
 directionalLight.shadow.camera.far = 15
 directionalLight.shadow.mapSize.set(1024, 1024)
+directionalLight.shadow.normalBias = 0.03
 scene.add(directionalLight)
 
 // const directionalLightCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
